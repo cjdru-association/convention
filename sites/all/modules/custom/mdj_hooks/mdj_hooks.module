@@ -1,0 +1,83 @@
+<?php
+
+/**
+ * @file
+ * Specific hooks for Montagne de Jeux website
+ */
+/*
+function mdj_hooks_form_alter(&$form, &$form_state, $form_id) {
+  print_r($form_id);
+  if ($form_id == 'partie_node_form') {
+    print_r($form);
+  }
+}*/
+
+function mdj_hooks_form_alter(&$form, &$form_state, $form_id) {
+  /*print_r($form_id);
+  if ($form_id == 'partie_node_form') {
+    print_r($form);
+  }*/
+}
+
+/**
+ * Implements hook_node_view().
+ *
+ */
+ 
+function mdj_hooks_node_view($node, $view_mode, $langcode) {
+  if ($node->type == 'partie' && !_node_registration_event_has_room($node) && arg(0) == 'node') {
+    drupal_set_message('Cette partie compte d&eacute;j&agrave; le nombre maximum d\'inscrits. Vous trouverez surement votre bonheur dans les autres parties disponibles.', 'warning');
+  }
+}
+
+
+
+/**
+ * Implements hook_preprocess_views_view_table().
+ *
+ */
+ 
+function mdj_hooks_preprocess_views_view_table(&$vars) {
+  if($vars['view']->name == 'programme') {
+    // Rearrange headers
+    $vars['header'] = array(
+      'field_partie_heure_samedi' => t('Horaire'),
+      'field_partie_jour' => t('Samedi'),
+      'title' => t('Dimanche')
+    );
+    
+    //Rearrange rows
+    $new_rows = array();
+    $current_hour = $current_row =  -1;
+    foreach ($vars['rows'] as $k => $row ) {
+      $new_row = array();
+      switch ($row['field_partie_jour']) {
+        case 'Samedi' :
+          $cell_hour = 'field_partie_heure_samedi';
+          $cell_game = 'field_partie_jour';
+          $field_hour = 'field_partie_heure_samedi';
+          break;
+        case 'Dimanche' :
+          $cell_hour = 'field_partie_heure_samedi';
+          $cell_game = 'title';
+          $field_hour = 'field_partie_heure_dimanche';
+          break;
+      }
+      if ($current_hour != str_replace(':', '', $row[$field_hour])) {
+        $current_hour = str_replace(':', '', $row[$field_hour]);
+        $current_row = $k;
+        $new_rows[$current_row] = array($cell_hour => '', $cell_game => '', 'title' => '');
+        $vars['field_classes'][$cell_hour][$current_row] = 'empty-cell';//, $cell_game => 'empty-cell', 'title' => 'empty-cell');
+        
+        $new_rows[$current_row][$cell_hour] = $row[$field_hour];
+        $new_rows[$current_row][$cell_game] = 'JDR - Parties pirates<br />Jeux de plateau<br />'. $row['title'];
+        //$vars['row_classes'][$current_row][$cell_hour] = '';
+        //$vars['row_classes'][$current_row][$cell_game] = '';
+      }
+      else {
+        $new_rows[$current_row][$cell_game] .= '<br />'. $row['title'];
+      }
+    }
+    $vars['rows'] = $new_rows;
+  }
+}

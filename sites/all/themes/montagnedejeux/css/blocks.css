@@ -1,0 +1,249 @@
+/**
+ * @file
+ * Block Styling
+ */
+
+
+.block { /* Block wrapper */
+  margin-bottom: 1.5em;
+}
+
+.block.first { /* The first block in the region */
+}
+
+.block.last { /* The last block in the region */
+}
+
+.block.odd { /* Zebra striping for each block in the region */
+}
+
+.block.even { /* Zebra striping for each block in the region */
+}
+
+h2.block-title { /* Block title */
+}
+
+#block-aggregator-category-1 { /* Block for the latest news items in the first category */
+}
+
+#block-aggregator-feed-1 { /* Block for the latest news items in the first feed */
+}
+
+#block-block-1 { /* First block created with "Add block" link */
+}
+
+#block-blog-recent { /* "Recent blog posts" block */
+}
+
+#block-book-navigation { /* "Book navigation" block for the current book's table of contents */
+}
+
+#block-comment-recent { /* "Recent comments" block */
+}
+
+#block-forum-active { /* "Active forum topics" block */
+}
+
+#block-forum-new { /* "New forum topics" block */
+}
+
+#block-locale-language { /* Language switcher block */
+}
+
+#block-menu-menu-NAME { /* Custom menu block */
+}
+
+#block-node-recent { /* "Recent content" block */
+}
+
+#block-node-syndicate { /* "Syndicate" block for primary RSS feed; see also page.css's .feed-icon */
+}
+
+#block-poll-recent { /* "Most recent poll" block */
+}
+
+#block-profile-author-information { /* "Author information" block for the profile of the page's author */
+}
+
+#block-search-form { /* "Search form" block */
+  background: url("../images/search-form-background.png") no-repeat scroll 0 0 transparent;
+  height: 52px;
+  list-style-image: none;
+  list-style-type: none;
+  margin-left: 59px;
+  margin-top: -24px;
+  padding-left: 19px;
+  width: 150px;
+}
+
+#block-search-form  h2 {
+  font-size: 11px;
+  margin-bottom: -5px;
+}
+
+#block-search-form #edit-search-block-form--2 {
+  background: none repeat scroll 0 0 #0D131B;
+  border: 1px solid #818184;
+  color: #FFFFFF;
+  font-size: 10px;
+  height: 16px;
+  padding-left: 5px;
+  padding-right: 20px;
+  vertical-align: top;
+  width: 85px;
+}
+
+#block-search-form #edit-submit, #block-search-form #edit-submit--2 {
+  margin-left: -25px;
+  border: none;
+  background-color: transparent;
+}
+
+#block-shortcut-shortcuts { /* "Shortcuts" block */
+}
+
+#block-statistics-popular { /* "Popular content" block */
+}
+
+#block-system-main-menu { /* "Main menu" block */
+}
+
+#block-system-management { /* "Management" block for Drupal management menu */
+}
+
+#block-system-navigation { /* "Navigation" block for Drupal navigation menu */
+}
+
+#block-system-user-menu { /* "User menu" block for Drupal user menu */
+}
+
+#block-system-help { /* "System help" block */
+}
+
+#block-system-main { /* "Main page content" block */
+}
+
+#block-system-powered-by { /* "Powered by Drupal" block */
+}
+
+#block-user-login { /* "User login form" block */
+}
+
+#block-user-new { /* "Who's new" block for a list of the newest users */
+}
+
+#block-user-online { /* "Who's online" block for a list of the online users */
+}
+
+/*
+ * Custom styles for blocks
+ */
+.region-sidebar-first ul {
+  padding-left: 55px;
+}
+
+#block-system-main-menu ul li {
+  background: url("/sites/all/themes/montagnedejeux/images/menu-background-0.png") no-repeat scroll 0 0 transparent;
+  font-size: 14px;
+  height: 31px;
+  line-height: 12px;
+  list-style-image: none;
+  list-style-type: none;
+  margin-top: -5px;
+  padding-top: 7px;
+  text-align: center;
+  width: 150px;
+}
+
+#block-system-main-menu a {
+  color: #FFFFFF;
+  font-family: Arial,Verdana,Tahoma,"DejaVu Sans",sans-serif;
+  font-weight: bold;
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+  text-shadow: 1px 1px 2px #000000;
+}
+
+#block-system-main-menu li a.active{
+  color: #F69A50;
+}
+
+#block-system-main-menu a:hover, .region-sidebar-first a:focus {
+  background-color: transparent;
+}
+
+#block-system-main-menu li:nth-child(1) {
+  background: url("/sites/all/themes/montagnedejeux/images/menu-background-1.png") no-repeat scroll 0 0 transparent;
+  height: 39px;
+  list-style-image: none;
+  list-style-type: none;
+  margin-left: 12px;
+  margin-top: -18px;
+  padding-top: 11px;
+  width: 132px;
+}
+
+
+#block-system-main-menu li:nth-child(2) {
+  background: url("/sites/all/themes/montagnedejeux/images/menu-background-2.png") no-repeat scroll 0 0 transparent;
+  height: 47px;
+  list-style-image: none;
+  list-style-type: none;
+  margin-left: 3px;
+  margin-top: -24px;
+  padding-top: 15px;
+  width: 138px;
+}
+
+#block-system-main-menu li:nth-child(2) a, #block-system-main-menu li:nth-child(3) a {
+  display: block;
+  -ms-transform:rotate(4deg); /* IE 9 */
+  -moz-transform:rotate(4deg); /* Firefox */
+  -webkit-transform:rotate(4deg); /* Safari and Chrome */
+  -o-transform:rotate(4deg); /* Opera */
+}
+
+#block-system-main-menu li:nth-child(3) {
+  background: url("/sites/all/themes/montagnedejeux/images/menu-background-3.png") no-repeat scroll 0 0 transparent;
+  height: 47px;
+  list-style-image: none;
+  list-style-type: none;
+  margin-left: 3px;
+  margin-top: -31px;
+  padding-top: 10px;
+  width: 146px;
+}
+
+
+#block-system-main-menu li:nth-child(4) {
+  background: url("/sites/all/themes/montagnedejeux/images/menu-background-4.png") no-repeat scroll 0 0 transparent;
+  height: 46px;
+  list-style-image: none;
+  list-style-type: none;
+  margin-left: 23px;
+  margin-top: -19px;
+  padding-top: 15px;
+  width: 128px;
+}
+
+
+#block-system-main-menu li:nth-child(5) {
+  background: url("/sites/all/themes/montagnedejeux/images/menu-background-5.png") no-repeat scroll 0 0 transparent;
+  height: 45px;
+  list-style-image: none;
+  list-style-type: none;
+  margin-left: 17px;
+  margin-top: -24px;
+  padding-top: 15px;
+  width: 127px;
+}
+
+
+#block-system-main-menu li:nth-child(5) a {
+  display: block;
+  -ms-transform:rotate(-4deg); /* IE 9 */
+  -moz-transform:rotate(-4deg); /* Firefox */
+  -webkit-transform:rotate(-4deg); /* Safari and Chrome */
+  -o-transform:rotate(-4deg); /* Opera */
+}

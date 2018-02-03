@@ -80,9 +80,10 @@ class NodeRegistrationNodeSettings {
     return $this->_cache(__FUNCTION__, function($settings) {
       // Use capacity from node field.
       if ($capacity_field = $settings->capacity_field) {
-        $field = @$settings->node->$capacity_field;
-        if (isset($field[LANGUAGE_NONE][0]['value'])) {
-          return max(0, (int) $field[LANGUAGE_NONE][0]['value']);
+        $items = field_get_items('node', $settings->node, $capacity_field);
+        if ($items) {
+          $item = $items[0];
+          return max(0, (int) $item['value']);
         }
 
         // No max.
@@ -136,8 +137,9 @@ class NodeRegistrationNodeSettings {
   public function time_from_date_field($date_field) {
     if ($date_field) {
       list($date_field, $column) = explode(':', $date_field . ':value');
-      if (isset($this->node->{$date_field}[LANGUAGE_NONE][0])) {
-        $item = $this->node->{$date_field}[LANGUAGE_NONE][0];
+      $items = field_get_items('node', $this->node, $date_field);
+      if ($items) {
+        $item = $items[0];
 
         // I stole the next part from date_tokens().
         $date = new DateObject($item[$column], $item['timezone_db'], date_type_format($item['date_type']));
@@ -294,7 +296,18 @@ class NodeRegistrationNodeSettings {
   /**
    * Updates this node's registration settings.
    */
-  public function update($settings) {
+  public function update($settings = NULL) {
+    // If no argument was passed, persist the current settings.
+    if ($settings === NULL) {
+      // Only save if this node already had custom settings. Don't ALWAYS copy node type
+      // settings into it.
+      if (!$this->more_settings) {
+        return;
+      }
+
+      $settings = get_object_vars($this);
+    }
+
     $allowed_native = array('nid' => 0, 'capacity' => 1, 'status' => 1, 'private_fields' => 1);
     $allowed_extra = _node_registration_defaults();
 

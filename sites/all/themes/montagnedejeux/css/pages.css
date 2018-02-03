@@ -16,7 +16,7 @@ body {
   margin: 0;
   padding: 0;
   background-color: #060608;
-  background-image: url("../images/body-header-2017.jpg");
+  background-image: url("../images/body-header-2018.jpg");
   background-position: center top;
   background-repeat: no-repeat;
   color: #818184;
@@ -132,7 +132,7 @@ body.page-concours-scenarii h2.node-title, body.page-financement-participatif h2
  */
 
 #main {
-  background: url("../images/body-background.png") repeat scroll 0 bottom transparent;
+  background: url("../images/body-background-2018.png") repeat scroll 0 bottom transparent;
   margin-top: 460px;
 }
 
@@ -285,7 +285,7 @@ span.field-label { /* The inline field label used by the Fences module */
  */
 
 #footer {
-  background: url("../images/body-footer-0.jpg") repeat scroll 0 0 transparent;
+  background: url("../images/body-footer-0-2018.jpg") repeat scroll 0 0 transparent;
 }
 
 #footer a, #footer a:hover, #footer a:focus{
@@ -295,11 +295,11 @@ span.field-label { /* The inline field label used by the Fences module */
 }
 
 body.rand-1 #footer {
-  background: url("../images/body-footer-1.jpg") repeat scroll 0 0 transparent;
+  background: url("../images/body-footer-0-2018.jpg") repeat scroll 0 0 transparent;
 }
 
 body.rand-2 #footer {
-  background: url("../images/body-footer-2.jpg") repeat scroll 0 0 transparent;
+  background: url("../images/body-footer-0-2018.jpg") repeat scroll 0 0 transparent;
 }
 
 /*

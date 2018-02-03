@@ -74,8 +74,15 @@ function _node_registration_request_is_ajax() {
 function _node_registration_reset_waitinglist($node) {
   $capacity = (int) $node->registration->capacity();
 
-  $registrations = node_registration_load_multiple(FALSE, array('nid' => $node->nid, 'cancelled' => 0));
-  ksort($registrations, SORT_NUMERIC);
+  $registration_ids = db_select('node_registration', 'nr')
+    ->fields('nr', array('registration_id'))
+    ->condition('nid', $node->nid)
+    ->condition('cancelled', 0)
+    ->orderBy('weight', 'ASC')
+    ->addTag('nr_waitinglist')
+    ->execute()
+    ->fetchCol();
+  $registrations = node_registration_load_multiple($registration_ids);
 
   $change = FALSE;
 
@@ -84,7 +91,7 @@ function _node_registration_reset_waitinglist($node) {
     $slots += $registration->slots;
 
     $old_waitinglist = (bool) $registration->waitinglist;
-    $new_waitinglist = $slots > $capacity;
+    $new_waitinglist = $capacity && $slots > $capacity;
 
     // Waitinglist status changed.
     if ($old_waitinglist != $new_waitinglist) {
@@ -248,7 +255,8 @@ function node_registration_send_broadcast($node, $subject, $message, $registrati
  * Internal send e-mail function.
  */
 function _node_registration_send_email($recipient, $subject, $message, $token_data = array(), $options = array()) {
-  global $language;
+  $recipient_account = user_load_by_mail($recipient);
+  $language = $recipient_account ? user_preferred_language($recipient_account) : language_default();
 
   // Set up from. Fill in later.
   $from_name = '';
@@ -284,10 +292,14 @@ function _node_registration_send_email($recipient, $subject, $message, $token_da
   $from_email or $from_email = variable_get('site_mail');
   $from = $from_name . ' <' . $from_email . '>';
 
+  // Translate subject & message.
+  $subject = t($subject, array(), array('context' => 'node_registration', 'langcode' => $language->language));
+  $message = t($message, array(), array('context' => 'node_registration', 'langcode' => $language->language));
+
   // Token data.
   if ($token_data) {
-    $subject = token_replace($subject, $token_data, array('clear' => TRUE));
-    $message = token_replace($message, $token_data, array('clear' => TRUE));
+    $subject = token_replace($subject, $token_data, array('clear' => TRUE, 'language' => $language));
+    $message = token_replace($message, $token_data, array('clear' => TRUE, 'language' => $language));
   }
 
   // Mail params.

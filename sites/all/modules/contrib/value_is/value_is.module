@@ -137,20 +137,21 @@ function _value_is_disabled_options_state(&$element) {
  */
 function _value_is_disabled_options_value_callback($element, $input = FALSE, $form_state = array()) {
   $passthrough = _value_is_disabled_options_passthrough($element);
+  $default = isset($element['#value']) ? $element['#value'] : (isset($element['#default_value']) ? $element['#default_value'] : array());
   if ($passthrough && !empty($element['#disabled'])) {
-    $values = isset($element['#value']) ? $element['#value'] : $element['#default_value'];
-    return drupal_map_assoc($values);
+    return drupal_map_assoc($default);
   }
 
   $state = _value_is_disabled_options_state($element);
-  $input = (array) $input;
-  $default = !empty($element['#default_value']) ? array_filter($element['#default_value']) : array();
-
   $access = !isset($element['#access']) || $element['#access'];
-  $submitted = $access && !empty($form_state['process_input']);
-  $values = drupal_map_assoc( $submitted ? array_filter($state + $input) : $default );
+  $submitted = $access && $input !== FALSE;
 
-  return $values;
+  if ($submitted) {
+    $input_data = is_array($input) ? $input : array();
+    return drupal_map_assoc(array_filter($state + $input_data));
+  }
+
+  return drupal_map_assoc($default);
 }
 
 /**

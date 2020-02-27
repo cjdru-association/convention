@@ -140,17 +140,18 @@ h2.block-title { /* Block title */
  */
 .region-sidebar-first ul {
   padding-left: 55px;
+  margin-top: 5px;
 }
 
 #block-system-main-menu ul li {
   background: url("/sites/all/themes/montagnedejeux/images/menu-background-0.png") no-repeat scroll 0 0 transparent;
   font-size: 14px;
-  height: 31px;
   line-height: 12px;
   list-style-image: none;
   list-style-type: none;
   margin-top: -5px;
   padding-top: 7px;
+  padding-bottom: 17px;
   text-align: center;
   width: 150px;
 }
@@ -165,6 +166,10 @@ h2.block-title { /* Block title */
   text-shadow: 1px 1px 2px #000000;
 }
 
+#block-system-main-menu li a.active-trail{
+  color: #F5EB68
+}
+
 #block-system-main-menu li a.active{
   color: #F69A50;
 }
@@ -175,24 +180,24 @@ h2.block-title { /* Block title */
 
 #block-system-main-menu li:nth-child(1) {
   background: url("/sites/all/themes/montagnedejeux/images/menu-background-1.png") no-repeat scroll 0 0 transparent;
-  height: 39px;
   list-style-image: none;
   list-style-type: none;
   margin-left: 12px;
-  margin-top: -18px;
   padding-top: 11px;
+  padding-bottom: 0px;
   width: 132px;
+  min-height: 39px;
 }
 
 
 #block-system-main-menu li:nth-child(2) {
   background: url("/sites/all/themes/montagnedejeux/images/menu-background-2.png") no-repeat scroll 0 0 transparent;
-  height: 47px;
   list-style-image: none;
   list-style-type: none;
   margin-left: 3px;
   margin-top: -24px;
   padding-top: 15px;
+  padding-bottom: 34px;
   width: 138px;
 }
 
@@ -206,36 +211,80 @@ h2.block-title { /* Block title */
 
 #block-system-main-menu li:nth-child(3) {
   background: url("/sites/all/themes/montagnedejeux/images/menu-background-3.png") no-repeat scroll 0 0 transparent;
-  height: 47px;
   list-style-image: none;
   list-style-type: none;
   margin-left: 3px;
   margin-top: -31px;
-  padding-top: 10px;
+  padding-top: 15px;
+  padding-bottom: 26px;
   width: 146px;
+}
+
+#block-system-main-menu li:nth-child(3) ul {
+  padding-left: 0;
+  margin-top: 10px;
+}
+
+#block-system-main-menu li:nth-child(3) li {
+  min-height: 23px;
+  background: url("/sites/all/themes/montagnedejeux/images/menu-background-0.png") no-repeat scroll 0 0 transparent;
+  font-size: 14px;
+  line-height: 12px;
+  list-style-image: none;
+  list-style-type: none;
+  margin-top: -5px;
+  margin-left: 0px;
+  padding-top: 7px;
+  padding-bottom: 0;
+  text-align: center;
+  width: 150px;
+}
+
+#block-system-main-menu li:nth-child(3) ul  li{
+  /*padding-bottom: 10px;*/
+}
+
+#block-system-main-menu li:nth-child(3) ul a {
+  -ms-transform:rotate(0deg); /* IE 9 */
+  -moz-transform:rotate(0deg); /* Firefox */
+  -webkit-transform:rotate(0deg); /* Safari and Chrome */
+  -o-transform:rotate(0deg); /* Opera */
+  font-size: 0.8em;
+}
+
+#block-system-main-menu li:nth-child(3) ul ul ul li{
+  display: table;
+  padding-top: 0px;
+  padding-bottom: 0px;
+  height: 31px;
+}
+
+#block-system-main-menu li:nth-child(3) ul ul ul li a{
+  vertical-align: middle;
+  display: table-cell;
 }
 
 
 #block-system-main-menu li:nth-child(4) {
   background: url("/sites/all/themes/montagnedejeux/images/menu-background-4.png") no-repeat scroll 0 0 transparent;
-  height: 46px;
   list-style-image: none;
   list-style-type: none;
   margin-left: 23px;
   margin-top: -19px;
   padding-top: 15px;
+  padding-bottom: 32px;
   width: 128px;
 }
 
 
 #block-system-main-menu li:nth-child(5) {
   background: url("/sites/all/themes/montagnedejeux/images/menu-background-5.png") no-repeat scroll 0 0 transparent;
-  height: 45px;
   list-style-image: none;
   list-style-type: none;
   margin-left: 17px;
   margin-top: -24px;
   padding-top: 15px;
+  padding-bottom: 31px;
   width: 127px;
 }
 

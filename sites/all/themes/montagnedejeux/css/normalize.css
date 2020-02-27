@@ -367,7 +367,7 @@ dfn {
 
 mark {
   background: none;
-  color: #000;
+  color: #f00;
 }
 
 /*
@@ -527,6 +527,7 @@ img {
   /* @todo Add responsive embedded video. */
   max-width: 100%;
   height: auto;
+  vertical-align: middle;
 }
 
 /*
@@ -717,6 +718,7 @@ table {
   /* Add vertical rhythm margins. */
   margin-top: 1.5em;
   margin-bottom: 1.5em;
+  width: 100%;
 }
 
 /*
@@ -726,10 +728,43 @@ table {
 
 th {
   text-align: left; /* LTR */
-  padding: 0;
+  padding: 5px;
   border-bottom: none;
+  color: #fff;
 }
 
 tbody {
   border-top: none;
+}
+
+tr {
+  line-height: 1em;
+}
+
+tr.odd {
+  background-color: #1A2736;
+}
+
+tr.even {
+  background-color: transparent;
+}
+
+tr.even, tr.odd {
+  border-bottom: 1px solid #344C6C;
+}
+
+tr.even:hover, tr.odd:hover {
+  background-color: #344C6C;
+}
+
+tr a:link {
+  margin: 0;
+}
+
+tr a:hover, tr a:focus {
+  background: transparent;
+}
+
+td {
+  padding: 6px;
 }

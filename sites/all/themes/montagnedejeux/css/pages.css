@@ -15,8 +15,8 @@
 body {
   margin: 0;
   padding: 0;
-  background-color: #060608;
-  background-image: url("../images/body-header-2019.jpg");
+  background-color: #040406;
+  background-image: url("../images/body-header-2020.jpg");
   background-position: center top;
   background-repeat: no-repeat;
   color: #818184;
@@ -28,7 +28,7 @@ body {
  */
 
 body.page-node-55, body.page-informations-pratiques, body.page-concours-scenarii, body.page-financement-participatif {
-  background-image: url("../images/body-header-next.jpg");
+  background-image: url("../images/body-header-2020.jpg");
 }
 
 body.page-node-55 #page, body.page-node-55 #main, body.page-informations-pratiques #page, body.page-informations-pratiques #main,
@@ -50,6 +50,28 @@ body.page-node-55 #content, body.page-informations-pratiques #content, body.page
 
 body.page-concours-scenarii h2.node-title, body.page-financement-participatif h2.node-title {
   display: none;
+}
+
+body.page-concours-archives h3, body.node-type-concours-scenarios h3 {
+  margin-top: 40px;
+}
+
+body.page-concours-archives fieldset, body.node-type-concours-scenarios fieldset {
+  padding-bottom: 0px;
+}
+
+body.page-concours-archives legend, body.node-type-concours-scenarios legend {
+  font-size: 0.9em;
+}
+
+body.page-concours-archives a.fieldset-title, body.node-type-concours-scenarios a.fieldset-title {
+  color: #818184;
+}
+
+body.page-concours-archives .views-fieldset .fieldset-wrapper, body.node-type-concours-scenarios .field-group-fieldset .fieldset-wrapper {
+  font-size: 0.9em;
+  line-height: 1.3em;
+  margin-top: -15px;
 }
 
 .hasCountdown {
@@ -132,7 +154,7 @@ body.page-concours-scenarii h2.node-title, body.page-financement-participatif h2
  */
 
 #main {
-  background: url("../images/body-background.png") repeat scroll 0 bottom transparent;
+  background: url("../images/body-background-2020.png") repeat scroll 0 bottom transparent;
   margin-top: 460px;
 }
 
@@ -165,9 +187,9 @@ body.admin-menu #main {
 }
 
 #page-title{
-  margin: 0 0 0 105px;
+  margin: 0 0 0 115px;
   text-align: center;
-  line-height: 35px;
+  line-height: 80px;
   padding-bottom: 30px;
 }
 
@@ -285,7 +307,7 @@ span.field-label { /* The inline field label used by the Fences module */
  */
 
 #footer {
-  background: url("../images/body-footer-0.jpg") repeat scroll 0 0 transparent;
+  background: url("../images/body-footer-2020-0.png") repeat scroll 0 0 transparent;
 }
 
 #footer a, #footer a:hover, #footer a:focus{
@@ -295,11 +317,11 @@ span.field-label { /* The inline field label used by the Fences module */
 }
 
 body.rand-1 #footer {
-  background: url("../images/body-footer-0.jpg") repeat scroll 0 0 transparent;
+  background: url("../images/body-footer-2020-0.png") repeat scroll 0 0 transparent;
 }
 
 body.rand-2 #footer {
-  background: url("../images/body-footer-0.jpg") repeat scroll 0 0 transparent;
+  background: url("../images/body-footer-2020-0.png") repeat scroll 0 0 transparent;
 }
 
 /*

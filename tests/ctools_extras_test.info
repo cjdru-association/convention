@@ -1,0 +1,7 @@
+name = Chaos tools extras/'includes' test
+description = Provides hooks for testing ctools_include-able features.
+package = Chaos tool suite
+version = CTOOLS_MODULE_VERSION
+core = 7.x
+dependencies[] = ctools
+hidden = TRUE

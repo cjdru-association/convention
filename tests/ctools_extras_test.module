@@ -1,0 +1,157 @@
+<?php
+/**
+ * @file
+ * Define some pages to test CTools extras.
+ */
+
+/**
+ * Implements hook_menu().
+ */
+function ctools_extras_test_menu() {
+  $items['ctools_extras_test/dependent/fieldsets'] = array(
+    'title' => 'Form Dependencies',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('ctools_extras_test_dependent_fieldsets_page'),
+    'access callback' => TRUE,
+    'type' => MENU_NORMAL_ITEM,
+  );
+
+  $items['ctools_extras_test/dependent/checkboxes'] = array(
+    'title' => 'Form Dependencies',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('ctools_extras_test_dependent_checkboxes_page'),
+    'access callback' => TRUE,
+    'type' => MENU_NORMAL_ITEM,
+  );
+
+  return $items;
+}
+
+/**
+ * Provide a form that exercises dependent fields on fieldset elements.
+ */
+function ctools_extras_test_dependent_fieldsets_page() {
+  ctools_include('dependent');
+
+  $form['description'] = array(
+    '#type' => 'item',
+    '#title' => t('Form fieldset dependency testing'),
+  );
+
+  $form['foo_or_bar'] = array(
+    '#title' => 'Foo or Bar',
+    '#type' => 'radios',
+    '#options' => array(
+      'foo' => 'Foo',
+      'bar' => 'Bar'
+    ),
+    '#default_value' => 'foo',
+  );
+
+  $form['react_on_foo'] = array(
+    '#type' => 'fieldset',
+    '#title' => t('Foo fieldset'),
+    '#dependency' => array('radio:foo_or_bar' => array('foo')),
+  );
+
+  $form['react_on_foo']['dummy_for_foo_fieldset'] = array(
+    '#title' => t('Dummy for FOO fieldset'),
+    '#type' => 'textfield',
+  );
+
+  $form['react_on_bar'] = array(
+    '#type' => 'fieldset',
+    '#title' => t('Bar fieldset'),
+    '#dependency' => array('radio:foo_or_bar' => array('bar')),
+  );
+
+  $form['react_on_bar']['dummy_for_bar_fieldset'] = array(
+    '#title' => t('Dummy for BAR fieldset'),
+    '#type' => 'textfield',
+  );
+
+  $form['#submit'] = array('ctools_extras_test_dependent_fieldsets_page_submit');
+  $form['submit'] = array(
+    '#type' => 'submit',
+    '#value' => 'Submit',
+  );
+  return $form;
+}
+
+
+function ctools_extras_test_dependent_fieldsets_page_submit($form, &$form_state) {
+
+}
+
+/**
+ * Provide a form that exercises dependent fields on fieldset elements.
+ */
+function ctools_extras_test_dependent_checkboxes_page() {
+  ctools_include('dependent');
+
+  $form['description'] = array(
+    '#type' => 'item',
+    '#title' => t('Form checkbox dependency testing'),
+  );
+
+  // A radio group to depend upon.
+  $form['type'] = array(
+    '#title' => t('Object type'),
+    '#type' => 'radios',
+    '#options' => array(
+      'view' => t('View'),
+      'node' => t('Node'),
+      'field' => t('Field'),
+      'term' => t('Term'),
+    ),
+    '#default_value' => 'view',
+  );
+
+  $form['box'] = array(
+    '#type' => 'checkbox',
+    '#title' => t('Enable special'),
+    '#default_value' => 1,
+  );
+
+  // Checkbox visibility depends on the selection of one of two radiobuttons.
+  $form['elements'] = array(
+    '#title' => t('Choose the elements to load from the node.'),
+    '#type' => 'checkboxes',
+    '#dependency' => array('radio:type' => array('node', 'term')),
+    '#options' => array(
+      'body' => t('Body'),
+      'fields' => t('Fields'),
+      'taxonomy' => t('Taxonomy'),
+      'meta' => t('Metadata'),
+    ),
+    '#default_value' => array('body', 'fields'),
+  );
+
+  // Textfield visibility depends on the selection of a radiobutton.
+  $form['views'] = array(
+    '#title' => t('Dummy for Views'),
+    '#type' => 'textfield',
+    '#dependency' => array('radio:type' => array('view')),
+  );
+
+  // Textfield visibility depends on the value of another textfield.
+  $form['views_special'] = array(
+    '#title' => t('Special for Views'),
+    '#type' => 'textfield',
+    '#dependency' => array(
+      'views' => array('view'),
+      'box' => TRUE,
+    ),
+  );
+
+  $form['submit'] = array(
+    '#type' => 'submit',
+    '#value' => 'Submit',
+  );
+  return $form;
+}
+
+
+function ctools_extras_test_dependent_checkboxes_page_submit($form, &$form_state) {
+
+}

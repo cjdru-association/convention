@@ -25,7 +25,7 @@ function mdj_hooks_form_alter(&$form, &$form_state, $form_id) {
  */
 
 function mdj_hooks_node_view($node, $view_mode, $langcode) {
-  if (!$node->registration->enabled()) {
+  if ($node->type == 'partie' && !$node->registration->enabled()) {
     drupal_set_message('Les inscriptions sont désactivées sur cette partie. Vous trouverez surement votre bonheur dans les autres parties disponibles.', 'warning');
   } else if ($node->type == 'partie' && !_node_registration_event_has_room($node) && arg(0) == 'node') {
     drupal_set_message('Cette partie compte d&eacute;j&agrave; le nombre maximum d\'inscrits. Vous trouverez surement votre bonheur dans les autres parties disponibles.', 'warning');
@@ -81,5 +81,20 @@ function mdj_hooks_preprocess_views_view_table(&$vars) {
       }
     }
     $vars['rows'] = $new_rows;
+  }
+}
+
+/**
+ * Implement hook_views_ajax_data_alter().
+ */
+function mdj_hooks_views_ajax_data_alter(&$commands, $view) {
+  if ($view->name == 'parties') {
+    // Remove scroll to top behaviour from views ajax
+    foreach ($commands as $key => $command) {
+      if ($command['command'] == 'viewsScrollTop') {
+        unset($commands[$key]);
+        break;
+      }
+    }
   }
 }

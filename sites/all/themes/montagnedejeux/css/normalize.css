@@ -237,7 +237,7 @@ a:hover,
 a:focus {
   background-color: #344C6C;
   -webkit-border-radius: 10px;
-  border-radius: 10px; 
+  border-radius: 10px;
 }
 
 a:active {
@@ -721,6 +721,10 @@ table {
   width: 100%;
 }
 
+table.sticky-header {
+  background: #0A0F15;
+}
+
 /*
  * Drupal provides table styling which is only useful for its admin section
  * forms, so we override this default CSS. (We set it back in forms.css.)
@@ -767,4 +771,8 @@ tr a:hover, tr a:focus {
 
 td {
   padding: 6px;
+}
+
+.ajax-progress .throbber {
+  background: transparent url(../images/ajax-loader.gif) no-repeat 0px center;
 }

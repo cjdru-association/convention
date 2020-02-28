@@ -1,0 +1,85 @@
+<?php
+
+/**
+ * Test DESCRIPTION
+ */
+class CToolsDependentTestCase extends DrupalWebTestCase {
+
+  /**
+   * {@inheritDoc}
+   */
+  public static function getInfo() {
+    return array(
+      'name' => 'Dependent Form Field tests',
+      'description' => 'Test out field dependency handling.',
+      'group' => 'ctools',
+      'dependencies' => array('ctools'),
+    );
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  public function setUp(array $modules = array()) {
+    $modules[] = 'ctools';
+    $modules[] = 'ctools_extras_test';
+    parent::setUp($modules);
+    ctools_include('dependent');
+  }
+
+  /**
+   * Test that we can invoke a dependent form page and get the html we expect.
+   *
+   * Sadly we cannot run JS in this context, so we can't check the action of
+   * dependent.js; but at least we can check that it might work...
+   */
+  public function testDependentFieldsets() {
+    $formid = 'ctools-extras-test-dependent-fieldsets-page';
+    $url = 'ctools_extras_test/dependent/fieldsets';
+    $this->drupalGet($url);
+
+    $form = $this->xpath('//*[@id=:id]', array(':id' => $formid));
+    $this->assertTrue(!empty($form), 'Fieldsets Form found');
+
+    // Check the fields we expect are present.
+    $this->assertField('edit-foo-or-bar-foo', 'edit-foo-or-bar-foo');
+    $this->assertField('edit-foo-or-bar-bar', 'edit-foo-or-bar-bar');
+
+    // Did we say to load the JS?
+    $this->assertRaw('ctools/js/dependent.js');
+
+    // Check that we got the expected drupal settings.
+    $settings = $this->drupalGetSettings();
+    $this->assertTrue(isset($settings['CTools']['dependent']));
+    $this->assertTrue(isset($settings['CTools']['dependent']['edit-react-on-foo']));
+  }
+
+  /**
+   * Test that we can invoke a dependent form page and get the html we expect.
+   *
+   * Sadly we cannot run JS in this context, so we can't check the action of
+   * dependent.js; but at least we can check that it might work...
+   */
+  public function testDependentCheckboxes() {
+    $formid = 'ctools-extras-test-dependent-checkboxes-page';
+    $url = 'ctools_extras_test/dependent/checkboxes';
+    $this->drupalGet($url);
+
+    $form = $this->xpath('//body//form[@id=:id]', array(':id' => $formid));
+    $this->assertTrue(!empty($form), 'Checkboxes Form found');
+    $this->assertField('edit-type-view');
+    $this->assertField('edit-type-node');
+    $this->assertField('edit-elements-body');
+    $this->assertField('edit-elements-fields');
+
+    // Did we say to load the JS?
+    $this->assertRaw('ctools/js/dependent.js');
+
+    // Check that we got the expected drupal settings.
+    $settings = $this->drupalGetSettings();
+    $this->assertTrue(isset($settings['CTools']['dependent']));
+    $this->assertTrue(isset($settings['CTools']['dependent']['edit-elements']));
+    $this->assertTrue(isset($settings['CTools']['dependent']['edit-views']));
+  }
+
+}

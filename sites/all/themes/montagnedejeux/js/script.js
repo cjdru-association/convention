@@ -6,14 +6,26 @@
  * the README.txt next to this file.
  */
 
-// JavaScript should be made compatible with libraries other than jQuery by
-// wrapping it with an "anonymous closure". See:
-// - http://drupal.org/node/1446420
-// - http://www.adequatelygood.com/2010/3/JavaScript-Module-Pattern-In-Depth
-(function ($, Drupal, window, document, undefined) {
-
-
-// Place your code here.
-
-
-})(jQuery, Drupal, this, this.document);
+(function ($) {
+  Drupal.behaviors.exampleModule = {
+    attach: function (context, settings) {
+      $('#edit-hs-wrapper, #edit-hd-wrapper').hide();
+      $('#edit-j').change(function(){
+        switch ($(this).val()) {
+          case "0":
+            $('#edit-hs-wrapper').show();
+            $('#edit-hd-wrapper').hide();
+            break;
+          case "1":
+            $('#edit-hd-wrapper').show();
+            $('#edit-hs-wrapper').hide();
+            break;
+          default:
+            $('#edit-hs-wrapper, #edit-hd-wrapper').hide();
+            break;
+        }
+        $("#edit-hs-wrapper input:checkbox, #edit-hd-wrapper input:checkbox").removeAttr('checked');
+      });
+    }
+  };
+}(jQuery));
